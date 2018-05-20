@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+<main class="main-wrapper" id="container"> 
+  
+  <!-- image Gallery -->
+  <div class="wrapper">
+    <div class="">
+        <% images.forEach((image) => { %>
+          <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
+            <li class="masonry-item grid">
+              <figure class="effect-sarah"> <img src="<%= image.image %>" alt="" />
+                <figcaption>
+                  <h3><span><%= image.name %></span></h3>
+                  <p><%= image.caption %></p>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        <% }); %>
+    </div>
+  </div>
+</main>
+
+<!-- Image Gallery -->
+<% include partials/footer %>
