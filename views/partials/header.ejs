@@ -33,6 +33,10 @@
 
     <link href="css/responsive.css" rel="stylesheet" type="text/css">
 
+    <!-- paperkit2 -->
+    <link rel="stylesheet" href="css/paper-kit.css">
+    <link rel="stylesheet" href="css/nucleo-icons.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 
     <!--[if lt IE 9]>
@@ -71,10 +75,14 @@
                     <div class="cross"> <span class="linee linea1"></span> <span class="linee linea2"></span> <span class="linee linea3"></span> </div>
                     <div class="main-menu">
                         <ul>
-                            <li class="active"><a href="/">Home</a></li>
+                            <li><a href="/">Home</a></li>
                             <li><a href="/about">About</a></li>
                             <li><a href="/blog">blog</a></li>
                             <li><a href="/contact">contact</a></li>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-default btn-round" data-toggle="modal" data-target="#myModal">
+                                    tell your story
+                                </button>
                         </ul>
                     </div>
                 </div>
@@ -87,3 +95,36 @@
 </header>
 
 <!-- header -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/" method="post">
+                    <div class="form-group">
+                        <label for="photo title">Photo Title</label>
+                        <input type="text" class="form-control" name="name" id="photo title" placeholder="Give your story a cool header">
+                    </div>
+                    <div class="form-group">
+                        <label for="image url">Image url</label>
+                        <input type="url" class="form-control" name="image" id="image url" placeholder="Image url">
+                    </div>
+                    <div class="form-group">
+                        <label for="caption">Caption</label>
+                        <input type="text" class="form-control" name="caption" id="caption" placeholder="Keep it short">
+                    </div>
+                    <div style="text-align:center;">
+                    <button type="submit" class="btn btn-primary btn-round">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

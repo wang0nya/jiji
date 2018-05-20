@@ -5,8 +5,8 @@
   <!-- image Gallery -->
   <div class="wrapper">
     <div class="">
-        <% images.forEach((image) => { %>
           <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
+              <% images.forEach((image) => { %>
             <li class="masonry-item grid">
               <figure class="effect-sarah"> <img src="<%= image.image %>" alt="" />
                 <figcaption>
@@ -15,8 +15,8 @@
                 </figcaption>
               </figure>
             </li>
+              <% }); %>
           </ul>
-        <% }); %>
     </div>
   </div>
 </main>
