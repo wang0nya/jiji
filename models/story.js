@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 // SCHEMA SETUP
-const imageSchema = new mongoose.Schema({
+const storySchema = new mongoose.Schema({
+    file: req.file,
     name: String,
-    image: String,
     caption: String
 });
 
 // module export to be accessed by others
-module.exports = mongoose.model("Image", imageSchema);
+module.exports = mongoose.model("Story", storySchema);

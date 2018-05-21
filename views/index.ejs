@@ -1,22 +1,29 @@
 <% include partials/header %>
 
-<main class="main-wrapper" id="container"> 
-  
+<main class="main-wrapper" id="container">
+
   <!-- image Gallery -->
   <div class="wrapper">
     <div class="">
+        <% if(files){ %>
           <ul class="small-block-grid-2 medium-block-grid-3 large-block-grid-3 masonry">
-              <% images.forEach((image) => { %>
-            <li class="masonry-item grid">
-              <figure class="effect-sarah"> <img src="<%= image.image %>" alt="" />
-                <figcaption>
-                  <h3><span><%= image.name %></span></h3>
-                  <p><%= image.caption %></p>
-                </figcaption>
-              </figure>
-            </li>
+              <% files.forEach(function(file) { %>
+                  <li class="masonry-item grid">
+                      <a href="/image/<%= file.filename %>" target="_blank">
+                      <figure class="effect-sarah">
+                          <img src="image/<%= file.filename %>" alt="story image">
+                          <figcaption>
+                              <h3><span><%= file.metadata.name %></span></h3>
+                              <p><%= file.metadata.caption %></p>
+                          </figcaption>
+                      </figure>
+                      </a>
+                  </li>
               <% }); %>
           </ul>
+        <% } else { %>
+        <p>No files to show</p>
+        <% } %>
     </div>
   </div>
 </main>

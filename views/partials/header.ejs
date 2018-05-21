@@ -107,18 +107,17 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="/" method="post">
+                <form action="/upload" method="POST" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="photo title">Photo Title</label>
                         <input type="text" class="form-control" name="name" id="photo title" placeholder="Give your story a cool header">
                     </div>
                     <div class="form-group">
-                        <label for="image url">Image url</label>
-                        <input type="url" class="form-control" name="image" id="image url" placeholder="Image url">
-                    </div>
-                    <div class="form-group">
                         <label for="caption">Caption</label>
                         <input type="text" class="form-control" name="caption" id="caption" placeholder="Keep it short">
+                    </div>
+                    <div class="form-group">
+                        <input type="file" class="form-control-file" name="file" id="file">
                     </div>
                     <div style="text-align:center;">
                     <button type="submit" class="btn btn-primary btn-round">Submit</button>
