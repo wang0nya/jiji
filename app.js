@@ -168,6 +168,16 @@ app.get('/contact', (req, res) => {
     res.render('contact');
 });
 
+//login page
+app.get('/login', (req, res) => {
+    res.render('login');
+});
+
+//register page
+app.get('/register', (req, res) => {
+    res.render('register');
+});
+
 // start server
 app.listen(3000, ()=> {
     console.log('server started');
