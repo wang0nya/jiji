@@ -12,6 +12,7 @@ const   express         = require ('express');
 
 // Middleware
 app.use(express.static('public'));
+app.use('/info', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
@@ -103,8 +104,8 @@ app.get('/files', (req, res) => {
 
 // @route GET /files/:filename
 // @desc  Display single file object
-app.get('/files/:filename', (req, res) => {
-    gfs.files.findOne({ filename: req.params.filename }, (err, file) => {
+app.get('/info/:md5', (req, res) => {
+    gfs.files.findOne({ md5: req.params.md5 }, (err, file) => {
         // Check if file
         if (!file || file.length === 0) {
             return res.status(404).json({
@@ -112,7 +113,7 @@ app.get('/files/:filename', (req, res) => {
             });
         }
         // File exists
-        return res.json(file);
+        res.render('info', {file: file});
     });
 });
 

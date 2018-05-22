@@ -1,0 +1,64 @@
+<% include partials/header %>
+<main class="main-wrapper-inner" id="container">
+
+    <div class="container">
+
+        <div class="wrapper-inner">
+
+            <!-- details-image -->
+
+            <figure class="details-image">
+
+                <img src="/image/<%= file.filename %>" alt="story image" class="img-responsive" style="max-height: 600px; max-width: 1030px"/>
+
+            </figure>
+
+            <!-- details-image -->
+
+            <!-- content -->
+
+            <div class="about-content">
+
+                <!--&lt;!&ndash; left &ndash;&gt;-->
+
+                <!--<section class="inner-left">-->
+
+                    <!--<header>-->
+
+                        <!--<h4>Jonathan Doe</h4>-->
+
+                        <!--<h5>Commercial Photographer</h5>-->
+
+                    <!--</header>-->
+
+                <!--</section>-->
+
+                <!--&lt;!&ndash; left &ndash;&gt;-->
+
+                <!-- center content -->
+
+                <section class="center-block">
+
+                    <h3><%= file.metadata.name %></h3>
+                    <h5><%= file.metadata.caption %></h5>
+
+                    <p><%= file.metadata.story %></p>
+
+
+
+                </section>
+
+                <!-- right -->
+
+            </div>
+
+            <!-- content -->
+
+
+
+        </div>
+
+    </div>
+
+</main>
+<% include partials/footer %>
