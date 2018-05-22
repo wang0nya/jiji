@@ -1,14 +1,17 @@
-const   express         = require ('express');
-        app             = express();
-        bodyParser      = require('body-parser');
-        mongoose        = require('mongoose');
-        multer          = require('multer');
-        path            = require('path');
-        crypto          = require('crypto');
-        GridFsStorage   = require('multer-gridfs-storage');
-        Grid            = require('gridfs-stream');
-        methodOverride  = require('method-override');
-        // Story           = require('./models/story');
+const   express         = require ('express'),
+        app             = express(),
+        bodyParser      = require('body-parser'),
+        mongoose        = require('mongoose'),
+        multer          = require('multer'),
+        path            = require('path'),
+        crypto          = require('crypto'),
+        GridFsStorage   = require('multer-gridfs-storage'),
+        Grid            = require('gridfs-stream'),
+        methodOverride  = require('method-override'),
+        User            = require('./models/user'),
+        LocalStrategy   = require("passport-local"),
+        passportLocalMongoose   = require("passport-local-mongoose"),
+        passport        = require("passport");
 
 // Middleware
 app.use(express.static('public'));
@@ -16,6 +19,16 @@ app.use('/info', express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'ejs');
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(require("express-session")({
+    secret:"When words become unclear, I shall focus with photographs. When images become inadequate, I shall be content with silence.",
+    resave: false,
+    saveUninitialized: false
+}));
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //db uri
 const mongoURI = 'mongodb://localhost/jiji';
@@ -172,10 +185,35 @@ app.get('/contact', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login');
 });
+app.post("/login", passport.authenticate("local"), ({
+    successRedirect: "/secret",
+    failureRedirect: "/login"
+    }), (req, res)=> {
+});
 
 //register page
 app.get('/register', (req, res) => {
     res.render('register');
+});
+app.post("/register", (req, res)=> {
+    User.register(new User({
+            username : req.body.username
+        }),
+        req.body.password, (err, user)=> {
+            if(err){
+                console.log(err);
+                return res.render('register');
+            }
+            passport.authenticate("local")(req, res, ()=> {
+                res.redirect("/");
+            });
+        });
+});
+
+//logout
+app.get("/logout", function(req, res){
+    req.logout();
+    res.redirect("/");
 });
 
 // start server
