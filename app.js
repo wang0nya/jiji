@@ -10,7 +10,6 @@ const   express         = require ('express'),
         methodOverride  = require('method-override'),
         User            = require('./models/user'),
         LocalStrategy   = require("passport-local"),
-        passportLocalMongoose   = require("passport-local-mongoose"),
         passport        = require("passport");
 
 // Middleware
@@ -34,6 +33,7 @@ passport.deserializeUser(User.deserializeUser());
 const mongoURI = 'mongodb://localhost/jiji';
 
 // Create mongo connection
+mongoose.connect(mongoURI);
 const conn = mongoose.createConnection(mongoURI);
 
 // Init gfs
@@ -185,11 +185,11 @@ app.get('/contact', (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login');
 });
-app.post("/login", passport.authenticate("local"), ({
-    successRedirect: "/secret",
-    failureRedirect: "/login"
-    }), (req, res)=> {
-});
+// app.post("/login", passport.authenticate("local"), ({
+//     successRedirect: "/secret",
+//     failureRedirect: "/login"
+//     }), (req, res)=> {
+// });
 
 //register page
 app.get('/register', (req, res) => {
